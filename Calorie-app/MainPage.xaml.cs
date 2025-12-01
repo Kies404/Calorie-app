@@ -1,23 +1,49 @@
 ﻿namespace Calorie_app;
 
+using System.Collections.ObjectModel;
+
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    public ObservableCollection<FoodItem> Foods { get; set; } = new();
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    private int _totalCalories = 0;
 
-	private void OnCounterClicked(object? sender, EventArgs e)
-	{
-		count++;
+    public MainPage()
+    {
+        InitializeComponent();
+        FoodList.ItemsSource = Foods;
+    }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+    private void OnAddClicked(object sender, EventArgs e)
+    {
+        string foodName = FoodEntry.Text;
+        string caloriesText = CalorieEntry.Text;
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+        if (string.IsNullOrWhiteSpace(foodName) || string.IsNullOrWhiteSpace(caloriesText))
+        {
+            DisplayAlert("Error", "Please enter food and calories.", "OK");
+            return;
+        }
+
+        if (int.TryParse(caloriesText, out int calories))
+        {
+            Foods.Add(new FoodItem { Name = foodName, Calories = calories });
+
+            _totalCalories += calories;
+            TotalLabel.Text = _totalCalories.ToString();
+
+            FoodEntry.Text = "";
+            CalorieEntry.Text = "";
+        }
+        else
+        {
+            DisplayAlert("Error", "Calories must be a number.", "OK");
+        }
+    }
+}
+
+public class FoodItem
+{
+    public string Name { get; set; }
+    public int Calories { get; set; }
 }

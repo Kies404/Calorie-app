@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Calorie-app")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+cc3ff6a67c078c74640a6c120aff9f277d82d01b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+4ad509327264a2a37f56298422656ff8ea85ad10")]
 [assembly: System.Reflection.AssemblyProductAttribute("Calorie-app")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Calorie-app")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
